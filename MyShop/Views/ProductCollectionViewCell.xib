@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ProductCollectionViewCell" customModule="MyCollectionView" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="122" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="122" height="134"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-Eg-z5I">
+                        <rect key="frame" x="0.0" y="0.0" width="122" height="96.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="96.5" id="5nu-Ib-48j"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w9c-Cr-Vlv">
+                        <rect key="frame" x="0.0" y="96.5" width="122" height="37.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3u-Hf-oja" userLabel="Name">
+                                <rect key="frame" x="0.0" y="0.0" width="122" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Price" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bi-9Y-k37" userLabel="Price">
+                                <rect key="frame" x="0.0" y="20.5" width="122" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="37.5" id="ue5-xB-aFK"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fXl-Eg-z5I" secondAttribute="trailing" id="8qy-Kq-azW"/>
+                <constraint firstAttribute="trailing" secondItem="w9c-Cr-Vlv" secondAttribute="trailing" id="B41-O5-zdK"/>
+                <constraint firstItem="fXl-Eg-z5I" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CBD-Hy-Deo"/>
+                <constraint firstAttribute="bottom" secondItem="w9c-Cr-Vlv" secondAttribute="bottom" id="M0j-00-nDo"/>
+                <constraint firstItem="w9c-Cr-Vlv" firstAttribute="top" secondItem="fXl-Eg-z5I" secondAttribute="bottom" id="gJ9-1u-SFa"/>
+                <constraint firstItem="w9c-Cr-Vlv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rB2-uR-OGS"/>
+                <constraint firstItem="fXl-Eg-z5I" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xjd-oe-Squ"/>
+            </constraints>
+            <size key="customSize" width="168" height="175"/>
+            <connections>
+                <outlet property="imageView" destination="fXl-Eg-z5I" id="yXs-gE-lsc"/>
+                <outlet property="name" destination="O3u-Hf-oja" id="MLE-5T-hRf"/>
+                <outlet property="price" destination="5bi-9Y-k37" id="TKF-ZX-VLv"/>
+            </connections>
+            <point key="canvasLocation" x="223.18840579710147" y="108.48214285714285"/>
+        </collectionViewCell>
+    </objects>
+</document>
