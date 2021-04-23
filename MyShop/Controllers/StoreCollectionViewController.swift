@@ -10,8 +10,11 @@ import FirebaseAuth
 
 class StoreCollectionViewController: UIViewController {
     
-    @IBOutlet var logoutButton: UIButton!
-    @IBAction func logout(_ sender: UIButton) {
+    @IBOutlet private var logoutButton: UIButton!
+    @IBOutlet private var sortButton: UIButton!
+    @IBOutlet private var collectionView: UICollectionView!
+    
+    @IBAction private func logout(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
             let introVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.introViewController)
@@ -19,7 +22,7 @@ class StoreCollectionViewController: UIViewController {
             view.window?.rootViewController = introVC
             view.window?.makeKeyAndVisible()
         } catch let error {
-            print("Failed to log out: ", error)
+            print("Failed to log out: ", error.localizedDescription)
         }
     }
     
@@ -27,16 +30,13 @@ class StoreCollectionViewController: UIViewController {
         case lowToHigh, highToLow, noSorting
     }
     
-    @IBOutlet private var sortButton: UIButton!
     private var sortingMethod: SortingMethod = .noSorting
-
-    @IBOutlet private var collectionView: UICollectionView!
-    
     private var collection = GoodsCollection()
     private var customer = Customer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customer.chosenProducts = getData()
         sortButton.showsMenuAsPrimaryAction = true
         sortButton.menu = createMenu()
         
@@ -74,9 +74,15 @@ extension StoreCollectionViewController: UICollectionViewDelegate, UICollectionV
             
             let addAction = UIAction(title: "Add to a cart", image: .add, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
                 guard let self = self else { return }
-                self.customer.addProduct(product: self.collection.goods[indexPath.item])
+                // if there is sorting method, there is filtered collection, not a default collection of goods
+                if self.sortingMethod == .highToLow || self.sortingMethod == .lowToHigh {
+                    self.customer.addProduct(product: self.collection.filteredGoods[indexPath.item])
+                } else {
+                    self.customer.addProduct(product: self.collection.goods[indexPath.item])
+                }
                 let tabBarVC = self.tabBarController as! MainViewController
                 tabBarVC.chosenProducts = self.customer.chosenProducts
+                self.saveData(self.customer.chosenProducts)
             }
             return UIMenu(children: [addAction])
         }
@@ -94,6 +100,7 @@ extension StoreCollectionViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension StoreCollectionViewController {
+    // filtering menu on a button action
     private func createMenu() -> UIMenu {
         let highToLowSortAction = UIAction(title: "High to low", image: UIImage(systemName: "arrow.down")) { [weak self] _ in
             guard let self = self else { return }
@@ -118,5 +125,25 @@ extension StoreCollectionViewController {
         }
         let menu = UIMenu(title: "", children: [highToLowSortAction, lowToHighSortAction, resetAction])
         return menu
+    }
+    
+    // saving and getting the cart data
+    private func saveData(_ dataArray: [Goods]) {
+        if let encoded = try? JSONEncoder().encode(dataArray) {
+            UserDefaults.standard.set(encoded, forKey: Constants.UserDefaults.keyForData)
+        }
+    }
+    
+    private func getData() -> [Goods] {
+        if let data = UserDefaults.standard.data(forKey: Constants.UserDefaults.keyForData) {
+            do {
+                let decoder = JSONDecoder()
+                let products = try decoder.decode([Goods].self, from: data)
+                return products
+            } catch {
+                print("Unable to Decode (\(error))")
+            }
+        }
+        return [Goods]()
     }
 }

@@ -16,6 +16,10 @@ class LoginViewController: UIViewController {
     @IBOutlet private var errorMessage: UILabel!
     @IBOutlet private var forgotPasswordButton: UIButton!
     
+    @IBAction private func forgotPasswordTapped(_ sender: UIButton) {
+        transitionToResetVC()
+    }
+    
     @IBAction private func login(_ sender: UIButton) {
         // validate all fields (check if they aren't empty)
         let error = validateFields()
@@ -28,16 +32,13 @@ class LoginViewController: UIViewController {
             let userPassword = password.text!
             Auth.auth().signIn(withEmail: userEmail, password: userPassword) { (result, err) in
                 if err != nil {
-                    Utilities.showError("Something went wrong", self.errorMessage)
+                    Utilities.showError(err!.localizedDescription, self.errorMessage)
                 } else {
+                    print(Auth.auth().currentUser!)
                     self.transitionToMainVC()
                 }
             }
         }
-    }
-    
-    @IBAction private func forgotPasswordTapped(_ sender: UIButton) {
-        // TO-DO: later!
     }
     
     override func viewDidLoad() {
@@ -56,6 +57,12 @@ class LoginViewController: UIViewController {
     private func transitionToMainVC() {
         let mainVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController)
         view.window?.rootViewController = mainVC
+        view.window?.makeKeyAndVisible()
+    }
+    
+    private func transitionToResetVC() {
+        let passwordResetVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.passwordResetController)
+        view.window?.rootViewController = passwordResetVC
         view.window?.makeKeyAndVisible()
     }
     

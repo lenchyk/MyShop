@@ -16,5 +16,12 @@ struct Constants {
     struct Storyboard {
         static let mainViewController = "MainViewController"
         static let introViewController = "IntroViewController"
+        static let loginViewController = "LoginViewController"
+        static let introNavigationController = "IntroNavigationController"
+        static let passwordResetController = "PasswordResetViewController"
+    }
+    
+    struct UserDefaults {
+        static let keyForData = "products"
     }
 }

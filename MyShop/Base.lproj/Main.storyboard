@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Id4-6h-hqr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jpj-Wh-mzj">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -14,7 +14,7 @@
         <!--NavigationController-->
         <scene sceneID="119-aa-787">
             <objects>
-                <navigationController title="NavigationController" id="Id4-6h-hqr" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="IntroNavigationController" title="NavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Id4-6h-hqr" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ih2-Q9-7VI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -336,7 +336,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Forgot your password?"/>
                                 <connections>
-                                    <action selector="forgotPasswordTapped:" destination="pos-06-1LL" eventType="touchUpInside" id="9QP-mr-tq7"/>
+                                    <action selector="forgotPasswordTapped:" destination="pos-06-1LL" eventType="touchUpInside" id="zYg-An-K8e"/>
                                     <segue destination="7Ob-JD-7xY" kind="show" id="sJH-h5-hto"/>
                                 </connections>
                             </button>

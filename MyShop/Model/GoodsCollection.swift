@@ -31,6 +31,7 @@ class GoodsCollection {
             return goods
     }
 
+    // filter collection: isHighToLow - true > HighToLow option; isHighToLow - false > LowToHight option
     func filterCollection(isHighToLow highToLow: Bool?) {
         filteredGoods.removeAll()
         
@@ -41,7 +42,7 @@ class GoodsCollection {
                 filteredGoods = goods.sorted(by: { $0.price < $1.price })
             }
         } else {
-            // if it's nil - reset to initial state
+            // if isHighToLow is nill = reset option
             filteredGoods = goods
         }
     }

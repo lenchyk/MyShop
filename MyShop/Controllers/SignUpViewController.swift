@@ -32,15 +32,13 @@ class SignUpViewController: UIViewController {
             // create a user
             Auth.auth().createUser(withEmail: userEmail, password: userPassword) { (result, err) in
                 if err != nil {
-                    Utilities.showError("There is an error.", self.errorMessage)
+                    Utilities.showError(err!.localizedDescription, self.errorMessage)
                 } else {
-                    
                     // user signs up successfully
                     let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["firstName": userFirstName, "lastName": userLastName, "uid": result!.user.uid]) { (error) in
-                        
                         if error != nil {
-                            Utilities.showError("Database problems.", self.errorMessage)
+                            Utilities.showError(error!.localizedDescription, self.errorMessage)
                         }
                     }
                     // transition to the tab bar controller
