@@ -84,7 +84,7 @@ extension TableViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.tableViewCellIdentifier, for: indexPath) as! ProductTableViewCell
-        let name = products[indexPath.item].name
+        let name = productNames[indexPath.item]
         cell.setup(name: name, countProduct: String(countedItems[name]!))
         return cell
     }

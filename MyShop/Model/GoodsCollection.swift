@@ -31,7 +31,9 @@ class GoodsCollection {
             return goods
     }
 
-    // filter collection: isHighToLow - true > HighToLow option; isHighToLow - false > LowToHight option
+    // filter collection:
+    // if isHighToLow - true > HighToLow option;
+    // if isHighToLow - false > LowToHight option
     func filterCollection(isHighToLow highToLow: Bool?) {
         filteredGoods.removeAll()
         

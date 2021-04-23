@@ -59,10 +59,10 @@ extension StoreCollectionViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as! ProductCollectionViewCell
         var product: Goods
-        if sortingMethod == .highToLow || sortingMethod == .lowToHigh {
-            product = collection.filteredGoods[indexPath.item]
-        } else {
+        if sortingMethod == .noSorting {
             product = collection.goods[indexPath.item]
+        } else {
+            product = collection.filteredGoods[indexPath.item]
         }
         cell.setup(for: product)
         return cell
@@ -75,7 +75,7 @@ extension StoreCollectionViewController: UICollectionViewDelegate, UICollectionV
             let addAction = UIAction(title: "Add to a cart", image: .add, identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
                 guard let self = self else { return }
                 // if there is sorting method, there is filtered collection, not a default collection of goods
-                if self.sortingMethod == .highToLow || self.sortingMethod == .lowToHigh {
+                if self.sortingMethod != .noSorting {
                     self.customer.addProduct(product: self.collection.filteredGoods[indexPath.item])
                 } else {
                     self.customer.addProduct(product: self.collection.goods[indexPath.item])
